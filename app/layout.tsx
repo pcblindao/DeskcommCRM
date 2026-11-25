@@ -329,7 +329,8 @@ async function MarcaDosClientComponents({ children }: { children: React.ReactNod
         initial: marca.initial,
       }}
     >
-      {children}
+      {/* Parceiro (PARCEIRO_* do .env): rodapé e suporte do menu. */}
+      <ParceiroProvider parceiro={parceiroDoAmbiente()}>{children}</ParceiroProvider>
     </MarcaDaInstalacaoProvider>
   );
 }
@@ -386,9 +387,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           */}
           <div className="overflow-x-clip">
             <MarcaDosClientComponents>
-              <ParceiroProvider parceiro={parceiroDoAmbiente()}>
-                <ThemeProvider>{children}</ThemeProvider>
-              </ParceiroProvider>
+              <ThemeProvider>{children}</ThemeProvider>
             </MarcaDosClientComponents>
           </div>
           {/*
