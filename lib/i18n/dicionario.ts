@@ -22290,6 +22290,10 @@ export const DICIONARIO: Traducoes = {
   "Ajuda": {
     es: "Ayuda",
   },
+  // Rodapé do parceiro (`components/parceiro/`): botão do WhatsApp de suporte.
+  "Falar com o suporte": {
+    es: "Hablar con soporte",
+  },
   "O caminho para cada tarefa, e onde ir quando algo não sai como esperado.": {
     es: "El camino para cada tarea, y adónde ir cuando algo no sale como se espera.",
   },

@@ -24,6 +24,8 @@ import {
 import { env } from "@/lib/env";
 import { logger } from "@/lib/logger";
 import { ThemeProvider } from "@/lib/theme";
+import { ParceiroProvider } from "@/components/parceiro/contexto";
+import { parceiroDoAmbiente } from "@/lib/parceiro/parceiro";
 import { Providers } from "./providers";
 import { PublicEnvScript } from "./public-env-script";
 import { EstiloDoTemaDaPlataforma } from "./tema-da-plataforma";
@@ -384,7 +386,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           */}
           <div className="overflow-x-clip">
             <MarcaDosClientComponents>
-              <ThemeProvider>{children}</ThemeProvider>
+              <ParceiroProvider parceiro={parceiroDoAmbiente()}>
+                <ThemeProvider>{children}</ThemeProvider>
+              </ParceiroProvider>
             </MarcaDosClientComponents>
           </div>
           {/*

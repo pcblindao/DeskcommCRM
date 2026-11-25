@@ -12,6 +12,7 @@ import { ContadorDeCasos } from "@/components/shell/ContadorDeCasos";
 import { ContadorDaFila } from "@/components/shell/ContadorDaFila";
 import { ContadorDeTarefas } from "@/components/shell/ContadorDeTarefas";
 import { VersionFooter } from "@/components/shell/VersionFooter";
+import { RodapeDoParceiro } from "@/components/parceiro/RodapeDoParceiro";
 import { LogotipoDoProduto, SimboloDoProduto } from "@/components/branding/MarcaDoProduto";
 import { marcaEhADoProduto } from "@/lib/branding";
 import { useMarcaDaInstalacao } from "@/lib/branding/contexto";
@@ -500,6 +501,7 @@ export function SidebarContent({
             {!collapsed && <span className="truncate">{t(ajuda.label)}</span>}
           </Link>
         )}
+        <RodapeDoParceiro collapsed={collapsed} />
         <VersionFooter collapsed={collapsed} onNavigate={onNavigate} />
       </div>
     </>

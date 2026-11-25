@@ -32,7 +32,7 @@ migrar os dados.
 ## 1. Clonar e configurar
 
 ```bash
-git clone https://github.com/melgarafael/DeskcommCRM.git && cd DeskcommCRM
+git clone https://github.com/pcblindao/DeskcommCRM.git && cd DeskcommCRM
 cp .env.hostgator.example .env   # o template de produção (o .env.example é o de dev)
 ```
 

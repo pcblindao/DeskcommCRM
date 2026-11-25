@@ -503,6 +503,11 @@ const schema = z.object({
    * para quem não suspendeu a conta dele e não tem como resolvê-la.
    */
   SUPPORT_EMAIL: z.string().optional().default(""),
+  PARCEIRO_NOME: z.string().optional().default(""),
+  PARCEIRO_SITE: z.string().optional().default(""),
+  PARCEIRO_LOGO_URL: z.string().optional().default(""),
+  PARCEIRO_WHATSAPP: z.string().optional().default(""),
+  PARCEIRO_MENSAGEM: z.string().optional().default(""),
 
   // EPIC-11 Impersonate cookie HMAC secret. Optional at boot (route returns
   // 503 at runtime if missing/short); required in prod for the feature to

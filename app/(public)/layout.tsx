@@ -4,6 +4,38 @@ import { marcaDaSaida } from "@/lib/branding/saida";
 import { createClient } from "@/lib/supabase/server";
 import { IdiomaProvider } from "@/lib/i18n/IdiomaProvider";
 import { idiomaDoVisitante } from "@/lib/i18n/idiomaAnonimo";
+import { traduzir } from "@/lib/i18n/dicionario";
+import { AssinaturaDoParceiro } from "@/components/parceiro/AssinaturaDoParceiro";
+import { linkDoSuporte, parceiroDoAmbiente } from "@/lib/parceiro/parceiro";
+
+/** Suporte e assinatura do parceiro sob o formulário (login, cadastro, senha). */
+function RodapeDoLogin({
+  nomeDoSistema,
+  locale,
+}: {
+  nomeDoSistema: string;
+  locale: Parameters<typeof traduzir>[1];
+}) {
+  const parceiro = parceiroDoAmbiente();
+  if (!parceiro) return null;
+  const link = linkDoSuporte(parceiro, { sistema: nomeDoSistema, tela: traduzir("Entrar", locale) });
+  return (
+    <div className="space-y-3 border-t pt-4 text-center">
+      {link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="suporte-do-parceiro"
+          className="text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+        >
+          {traduzir("Falar com o suporte", locale)}
+        </a>
+      )}
+      <AssinaturaDoParceiro parceiro={parceiro} />
+    </div>
+  );
+}
 
 /**
  * A casca das telas de acesso — login, cadastro, recuperação, MFA, confirmar acesso.
@@ -118,6 +150,7 @@ export default async function PublicLayout({ children }: { children: React.React
             </div>
           ) : null}
           {children}
+          <RodapeDoLogin nomeDoSistema={marca.nome} locale={locale} />
         </div>
       </div>
     </IdiomaProvider>

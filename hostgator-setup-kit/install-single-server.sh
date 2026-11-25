@@ -288,7 +288,16 @@ set_env_var "$app_env" SUPABASE_DB_URL "postgresql://postgres:${postgres_passwor
 # publicada das TRES imagens e grava numero de versao (nunca tag movel).
 set_env_var "$app_env" OWNER_EMAIL "$owner_email"
 set_env_var "$app_env" OWNER_PASSWORD "$owner_password"
-set_env_var "$app_env" APP_NAME DeskcommCRM
+set_env_var "$app_env" APP_NAME "${APP_NAME:-CRM com Marcos}"
+set_env_var "$app_env" APP_ACCENT_HEX "${APP_ACCENT_HEX:-#006CFF}"
+# Parceiro (fork CRM com Marcos): rodape do menu e do login, com o botao
+# "Falar com o suporte" no WhatsApp. Um valor ja gravado no .env (ou exportado
+# antes de chamar o instalador) vence o padrao: re-rodar nao desfaz ajuste.
+for _par in   "PARCEIRO_NOME|CRM com Marcos"   "PARCEIRO_WHATSAPP|5511970530923"   "PARCEIRO_LOGO_URL|/parceiro/crm-com-marcos.png"   "PARCEIRO_SITE|"   "PARCEIRO_MENSAGEM|"; do
+  _chave="${_par%%|*}"; _padrao="${_par#*|}"
+  _atual="${!_chave:-$(ler_env "$app_env" "$_chave")}"
+  set_env_var "$app_env" "$_chave" "${_atual:-$_padrao}"
+done
 set_env_var "$app_env" APP_LOCALE pt-BR
 # IA: nenhuma chave e gravada, entao ela nasce sem credencial (desligada) e o
 # fim do install.sh aponta o caminho em IA > Credenciais. Chaves NAO sao
